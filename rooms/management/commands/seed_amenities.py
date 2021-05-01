@@ -1,10 +1,10 @@
 from django.core.management.base import BaseCommand
-from rooms import models as room_models
+from rooms.models import Amenity
 
 
 class Command(BaseCommand):
 
-    help = "This command tells me that he loves me"
+    help = "This command creates amenities"
 
     """
     def add_arguments(self, parser):
@@ -59,7 +59,7 @@ class Command(BaseCommand):
             "TV",
         ]
 
-        times = options.get("times")
+        for a in amenities:
+            Amenity.objects.create(name=a)
 
-        for t in range(0, int(times)):
-            self.stdout.write(self.style.SUCCESS("I love you"))
+        self.stdout.write(self.style.SUCCESS("🍀 Amenity created!"))
